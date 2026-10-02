@@ -1,0 +1,135 @@
+:root {
+  --bg: #0e1116;
+  --bg2: #151a22;
+  --card: #1a2029;
+  --line: #262e3a;
+  --fg: #e6edf3;
+  --mut: #8b98a9;
+  --acc: #4c8dff;
+  --acc2: #2f6fe0;
+  --ok: #3fb950;
+  --warn: #d29922;
+  --err: #f85149;
+  --mono: "Cascadia Mono", "Consolas", "SFMono-Regular", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(1200px 600px at 15% -10%, #1b2637 0%, var(--bg) 55%) fixed;
+  color: var(--fg);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+.card {
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 26px 26px 18px;
+  background: linear-gradient(180deg, var(--card), var(--bg2));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+}
+
+.head { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+
+.logo {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
+  font-weight: 800; font-size: 13px; letter-spacing: .5px;
+  color: #fff; box-shadow: 0 6px 18px rgba(76,141,255,.35);
+}
+.logo span { font-weight: 500; opacity: .85; }
+
+h1 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: .2px; }
+h1 em { font-style: normal; color: var(--mut); font-weight: 500; }
+.sub { margin: 3px 0 0; font-size: 12px; color: var(--mut); }
+
+.row { display: flex; gap: 12px; align-items: stretch; margin-bottom: 20px; }
+
+.file-drop {
+  flex: 1;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: rgba(255,255,255,.02);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font-size: 13px; color: var(--mut);
+}
+.file-drop:hover { border-color: var(--acc); background: rgba(76,141,255,.06); }
+.file-drop.has-file { border-style: solid; border-color: var(--acc); color: var(--fg); }
+.file-drop input { display: none; }
+.file-ico { font-size: 15px; }
+
+.primary {
+  padding: 0 26px;
+  border: 0; border-radius: 12px;
+  background: linear-gradient(180deg, var(--acc), var(--acc2));
+  color: #fff; font-size: 14px; font-weight: 650; letter-spacing: .3px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(76,141,255,.3);
+  transition: transform .08s, filter .15s;
+}
+.primary:hover:not(:disabled) { filter: brightness(1.08); }
+.primary:active:not(:disabled) { transform: translateY(1px); }
+.primary:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+
+.progress { margin-bottom: 16px; }
+
+.bar {
+  height: 9px; border-radius: 999px;
+  background: #0b0e13; border: 1px solid var(--line);
+  overflow: hidden;
+}
+#barFill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--acc2), var(--acc));
+  border-radius: 999px;
+  transition: width .25s ease;
+}
+#barFill.done { background: linear-gradient(90deg, #2ea043, var(--ok)); }
+#barFill.fail { background: linear-gradient(90deg, #b62324, var(--err)); }
+
+.statusline {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 8px; font-size: 12.5px; color: var(--mut);
+}
+#pct { font-variant-numeric: tabular-nums; color: var(--fg); }
+
+.log-wrap {
+  height: 260px; overflow: auto;
+  background: #0a0d12;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+#log {
+  margin: 0; font-family: var(--mono); font-size: 12px; line-height: 1.65;
+  white-space: pre-wrap; word-break: break-all; color: #c9d4e0;
+}
+#log .t { color: #5b6775; }
+#log .ok { color: var(--ok); }
+#log .warn { color: var(--warn); }
+#log .err { color: var(--err); }
+#log .info { color: var(--acc); }
+
+.foot {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line);
+}
+.badge {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
+  padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line);
+}
+.badge.idle  { color: var(--mut); }
+.badge.work  { color: var(--acc); border-color: var(--acc); }
+.badge.ok    { color: var(--ok); border-color: var(--ok); }
+.badge.fail  { color: var(--err); border-color: var(--err); }
+.hint { font-size: 11.5px; color: #55606e; }

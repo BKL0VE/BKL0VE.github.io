@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gimbal 1-Axis · Firmware Updater</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="head">
+      <div class="logo">GM<span>1X</span></div>
+      <div>
+        <h1>Gimbal 1-Axis <em>Firmware Updater</em></h1>
+        <p class="sub">UART1 (USB2Serial) · STM32 AN3155 ROM Bootloader</p>
+      </div>
+    </header>
+
+    <section class="row">
+      <label class="file-drop" for="fw">
+        <input type="file" id="fw" accept=".hex" />
+        <span class="file-ico">⬆</span>
+        <span id="fileName">최신 펌웨어(AC-GM1X_FW_ver_Final.hex) 불러오는 중…</span>
+      </label>
+      <button id="connect" class="primary">업데이트 시작</button>
+    </section>
+
+    <section class="progress">
+      <div class="bar"><div id="barFill"></div></div>
+      <div class="statusline">
+        <span id="status">대기 중 · 펌웨어 확인 후 [업데이트 시작]을 누르세요</span>
+        <span id="pct">0%</span>
+      </div>
+    </section>
+
+    <section class="log-wrap">
+      <pre id="log" aria-live="polite"></pre>
+    </section>
+
+    <footer class="foot">
+      <span id="badge" class="badge idle">연결 안 됨</span>
+      <span class="hint">Chrome/Edge · WebSerial</span>
+    </footer>
+  </main>
+
+  <script src="ihex.js"></script>
+  <script src="protocol.js"></script>
+  <script src="serial.js"></script>
+  <script src="an3155.js"></script>
+  <script src="updater.js"></script>
+</body>
+</html>
